@@ -81,9 +81,12 @@ app.get("/weather", (req, res) => {
                 error: error,
               });
             } else {
-              console.log("data forecast" + data);
+              console.log("before display" + data);
               res.send({
-                forecast: data,
+                forecast: {
+                  temp: data.main.temp,
+                  weather: data.weather[0].description,
+                },
                 location: country,
               });
             }

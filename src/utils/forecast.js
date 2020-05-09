@@ -13,7 +13,7 @@ const forecast = (lat, long, callback) => {
     } else if (body.cod == "404") {
       callback("unable to find the location", undefined);
     } else {
-      callback(undefined, body.weather[0]);
+      callback(undefined, body);
     }
   });
 };

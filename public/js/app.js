@@ -33,14 +33,15 @@ weatherForm.addEventListener("submit", (e) => {
   messageOne.textContent = "Loading";
   messageTwo.textContent = "";
   fetch("/weather?address=" + searchText.value).then((response) => {
-    console.log(response);
-    response.json().then((data) => {
-      console.log(data);
+      response.json().then((data) => {
       if (data.error) {
         messageOne.textContent = data.error;
       } else {
-        messageOne.textContent = data.location;
-        messageTwo.textContent = data.forecast.description;
+        const temp = Math.round(data.forecast.temp - 273.15);
+
+        messageTwo.textContent = data.location;
+        document.getElementById("showData").innerHTML =
+          temp + "<sup>o</sup>" + "C" + " " + data.forecast.weather;
       }
     });
   });
